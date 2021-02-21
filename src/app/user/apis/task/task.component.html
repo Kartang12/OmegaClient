@@ -1,0 +1,33 @@
+<div *ngIf="!flag" id="wrapper">
+    <div id="page-content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div *ngIf="loaded" class="col-lg-8 col-lg-offset-2">
+                        <h1>{{ex.title}}</h1>
+                        <p>{{ex.content}}</p>
+                    <input type="text" (keyup)="getVal($event.target.value)">
+                    <br>
+                    <h6 style="color:red">У вас одна попытка</h6>
+                    <button type="button" (click)="confirmAnswer()">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="flag" id="wrapper">
+    <div id="page-content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div *ngIf="loaded" class="col-lg-8 col-lg-offset-2">
+                        <h1>{{ex.title}}</h1>
+                        <p>{{ex.content}}</p>
+                        <p>Задача уже решена. Ваш ответ: <span style="color:green"> {{complete.answer}}</span></p>
+                        <br>
+                    <h6 *ngIf="complete.mark == 1" style="color:green">Верный ответ</h6>
+                    <h6 *ngIf="complete.mark == 0" style="color:red">неверный ответ</h6>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

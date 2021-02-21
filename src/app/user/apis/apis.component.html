@@ -1,0 +1,46 @@
+<!-- <div class="container mx-0"> -->
+<!-- Sidebar -->
+    <div class="row">
+        <div class="bg-light border-right px-3">
+            <h5>APIs</h5>
+            <div class="list-group list-group-flush">
+                <ul *ngFor="let api of apis">
+                    <a [routerLink]="" (click)="loadTasks(api.id)">{{api.name}}</a>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-light border-right px-3">
+            <h5>Tasks</h5>
+            <div class="list-group list-group-flush">
+                <ul *ngFor="let task of apiTasks">
+                    <a [routerLink]="" (click)="loadTaskParameters(task.id)">{{task.description}}</a>
+                </ul>
+            </div>
+        </div>
+        <div class="taskDetails pl-3" >
+            <h5>Task parameters</h5>
+            <div *ngFor="let parameter of parameters; let i = index;" class="parameterInfo">
+                <label class="parameter mr-3" for="parameter{{parameter.parameter}}">{{parameter.parameter}}</label>
+                <input *ngIf="parametersLoaded" type="text" name="parameter{{parameter.parameter}}" [(ngModel)]="saveRequest.parameters[i].value">
+                <p>{{parameter.description}}</p>
+                <p class="parameter">Default value: {{parameter.defaultValue}}</p>
+                <hr>
+            </div>
+            <div class="intervalPicker" *ngIf="parametersLoaded">
+                <label for="timeInterval">Select start time</label>
+                <input type="datetime-local" name="startTime" class="mx-3" [(ngModel)]="saveRequest.nextInvoke">
+                <br/>
+                <label for="daysInterval">Choose days interval</label>
+                <input type="number" name="daysInterval" style="width: 50px;" class="mx-3" [(ngModel)]="saveRequest.daysInterval">
+                <br/>
+                <label for="timeInterval">Choose hours and minutes interval</label>
+                <input type="time" name="timeInterval"  class="mx-3" [(ngModel)]="saveRequest.timeInterval">
+                <br/>
+                <label for="name">Choose name for your task</label>
+                <input type="text" name="nme"  class="mx-3" [(ngModel)]="saveRequest.name">
+
+            </div>
+            <button *ngIf="parametersLoaded" [routerLink]="" (click)="ApplyTask()" class="btn-success">ApplyTask</button>
+        </div>
+    </div>
+<!-- </div> -->

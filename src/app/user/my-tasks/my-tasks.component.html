@@ -1,0 +1,29 @@
+<!-- <div class="container mx-0">
+
+    <div class="row">
+        <div class="bg-light border-right pr-3">
+            <div class="sidebar-heading">APIs</div>
+            <div class="list-group list-group-flush">
+                <ul *ngFor="let task of tasks">
+                    <button (click)="loadTask(task.id)">{{task}}</button>
+                </ul>
+            </div>
+        </div>
+        <div class="taskDetails pr-3">
+            <div *ngFor="let parameter of parameters" class="parameterInfo">
+                <label for="parameter{{parameter.parameter}}">{{parameter.parameter}}</label>
+                <input type="text" name="parameter{{parameter.parameter}}">
+                <p>{{parameter.description}}</p>
+                <p>Default value: {{parameter.defaultValue}}</p>
+                <hr>
+            </div>
+            <div *ngIf="parametersLoaded" class="intervalPicker">
+                <label for="daysInterval">Choose days interval</label>
+                <input type="number" name="daysInterval">
+                <label for="timeInterval">CHoose hours and minutes interval</label>
+                <input type="time" name="timeInterval">
+            </div>
+            <button *ngIf="parametersLoaded" (click)="ApplyTask">ApplyTask</button>
+        </div>
+    </div>
+</div> -->
