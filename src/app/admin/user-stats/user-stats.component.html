@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">UserId</th>
+        <th scope="col">OverallTasksUsed</th>
+        <th scope="col">TasksActive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersStats">
+        <td >{{user.userId}}</td>
+        <td>{{user.overallTasksUsed}}</td>
+        <td>{{user.activeTasks}}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,5 +1,4 @@
 import { Parameter } from '../Parameter'
-import { TimeInterval } from '../TimeInterval'
 
 export class SaveTaskRequest{
     taskId:number

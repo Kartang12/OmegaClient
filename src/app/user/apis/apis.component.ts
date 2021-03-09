@@ -57,7 +57,7 @@ export class ApisComponent implements OnInit {
         for(let i = 0; i < res.length; i++)
         {
           // console.log(res[i])
-          this.saveRequest.parameters[i] = new Parameter()
+          this.saveRequest.parameters[i] = new Parameter('',0)
           this.saveRequest.parameters[i].parameterId = res[i].id
           this.saveRequest.parameters[i].value = res[i].defaultValue
           // console.log(this.saveRequest.parameters[i])

@@ -11,7 +11,7 @@ import { UserLoginRequest } from '../_Models/Requests/UserLoginRequest';
 
 export class LoginComponent implements OnInit {
 
-  route:String = "/user/apis"
+  route:String = ""
   req:UserLoginRequest = new UserLoginRequest();
 
   constructor(private _auth: AuthService, private router:Router){}
@@ -20,13 +20,26 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this._auth.loginUser(this.req)
-    .subscribe(
+    this._auth.loginUser(this.req).subscribe(
       res => {
         localStorage.setItem('token', res.token)
+        if(res.role == "User")
+        {
+          console.log(1)
+          this.route = "/user"
+        }
+        if(res.role == "Admin")
+        {
+          console.log(2)
+          this.route = "/admin"
+        }
         this.router.navigate([this.route])
       },
       err => console.log(err)
     )
   }
+
+  toRegistration() {
+    this.router.navigate(["/register"])
+  }  
 }

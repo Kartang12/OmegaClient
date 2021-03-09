@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {HttpResponseBase} from '@angular/common/http'
 import { Port } from '../_Models/Port'
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserRegisterRequest } from '../_Models/Requests/UserRegisterRequest';
 
 export const ACCESS_TOKEN = "api_access_token" 
 
@@ -17,7 +18,7 @@ export class AuthService {
     constructor(private http: HttpClient,
     private jwtHelper:JwtHelperService) { }
 
-  registerUser(user){
+  registerUser(user:UserRegisterRequest){
     return this.http.post<any>(this._registerUrl, user)
   }
   
@@ -48,5 +49,4 @@ export class AuthService {
   createAuthorizationHeader(headers: HttpHeaders) {
     headers.append('Authorization', 'Bearer ' + localStorage.getItem("token")); 
   }
-
 }

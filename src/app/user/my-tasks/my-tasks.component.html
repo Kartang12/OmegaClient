@@ -1,29 +1,36 @@
-<!-- <div class="container mx-0">
-
-    <div class="row">
-        <div class="bg-light border-right pr-3">
-            <div class="sidebar-heading">APIs</div>
-            <div class="list-group list-group-flush">
-                <ul *ngFor="let task of tasks">
-                    <button (click)="loadTask(task.id)">{{task}}</button>
-                </ul>
-            </div>
-        </div>
-        <div class="taskDetails pr-3">
-            <div *ngFor="let parameter of parameters" class="parameterInfo">
-                <label for="parameter{{parameter.parameter}}">{{parameter.parameter}}</label>
-                <input type="text" name="parameter{{parameter.parameter}}">
-                <p>{{parameter.description}}</p>
-                <p>Default value: {{parameter.defaultValue}}</p>
-                <hr>
-            </div>
-            <div *ngIf="parametersLoaded" class="intervalPicker">
-                <label for="daysInterval">Choose days interval</label>
-                <input type="number" name="daysInterval">
-                <label for="timeInterval">CHoose hours and minutes interval</label>
-                <input type="time" name="timeInterval">
-            </div>
-            <button *ngIf="parametersLoaded" (click)="ApplyTask">ApplyTask</button>
+<div class="row">
+    <div class="bg-light border-right px-3">
+        <h5>Tasks</h5>
+        <div class="list-group list-group-flush">
+            <ul *ngFor="let task of tasks">
+                <a [routerLink]="" (click)="getTaskParameters(task.id)">{{task.name}}</a>
+            </ul>
         </div>
     </div>
-</div> -->
+    <div class="taskDetails pl-3" >
+        <h5>Task parameters</h5>
+        <div *ngFor="let parameter of parameters; let i = index;" class="parameterInfo">
+            <label class="parameter mr-3" for="parameter{{parameter.name}}">{{parameter.name}}</label>
+            <input *ngIf="parametersLoaded" type="text" name="parameter{{parameter.name}}" [(ngModel)]="parameters[i].value">
+            <p>{{parameter.description}}</p>
+            <p class="parameter">Default value: {{parameter.defaultValue}}</p>
+            <hr>
+        </div>
+        <div class="intervalPicker" *ngIf="parametersLoaded">
+            <label for="timeInterval">Select start time</label>
+            <input type="datetime-local" name="startTime" class="mx-3" [(ngModel)]="updateRequest.nextInvoke" value="{{updateRequest.nextInvoke}}">
+            <br/>
+            <label for="daysInterval">Choose days interval</label>
+            <input type="number" name="daysInterval" style="width: 50px;" class="mx-3" [(ngModel)]="updateRequest.daysInterval">
+            <br/>
+            <label for="timeInterval">Choose hours and minutes interval</label>
+            <input type="time" name="timeInterval"  class="mx-3" [(ngModel)]="updateRequest.timeInterval"  value="{{updateRequest.timeInterval}}">
+            <br/>
+            <label for="name">Choose name for your task</label>
+            <input type="text" name="nme"  class="mx-3" [(ngModel)]="updateRequest.name">
+
+        </div>
+        <button *ngIf="parametersLoaded" [routerLink]="" (click)="updateTask()" class="btn-success">ApplyTask</button>
+        <button *ngIf="parametersLoaded" [routerLink]="" (click)="dismissTask()" class="btn-danger">DismissTask</button>
+    </div>
+</div>
